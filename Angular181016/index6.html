@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="sampleApp">
+<head>
+<title>$broadcast</title>
+<script src="angular.js"></script>
+<script>
+var app=angular.module("sampleApp",[]);
+app.controller("testCtrl",function ($scope){
+$scope.$on("messageEvent",function(event,args){
+$scope.info=args.message;
+})
+$scope.send=function(){
+$scope.$emit("messageEvent",{
+message:$scope.messageInput
+});
+}
+});
+</script>
+</head>
+<body>
+<div ng-controller="testCtrl">
+	<p>Controller1</p>
+	<p>Received message - {{info}}</p>
+</div>
+	<div ng-controller="testCtrl">
+	<p>Controller2</p>
+	<p>Received message - {{info}}</p>
+</div>
+	<div ng-controller="testCtrl">
+	<p>Controller3</p>
+	<p>Received message - {{info}}</p>
+	<input ng-model="messageInput" />
+	<button ng-click="send()">Send</button>
+</div>
+</div>
+</div>
+</body>
+</html>

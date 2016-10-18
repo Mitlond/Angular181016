@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="sampleApp">
+<head>
+<title>Inheritance1</title>
+<script src="angular.js"></script>
+<script>
+var app=angular.module("sampleApp",[]);
+app.controller("baseCtrl",function ($scope){
+$scope.value={data: "base value"};
+$scope.changeValue1=function(){
+$scope.value.data="changeValue1 - " + new Date().toLocaleTimeString();
+
+}
+});
+app.controller("derivedCtrl", function($scope){
+$scope.changeValue2=function(){
+$scope.value.data="changeValue2 - " + new Date().toLocaleTimeString();
+}
+});
+</script>
+</head>
+<body>
+	<div ng-controller="baseCtrl">
+	<p>{{value.data}}</p>
+	<button ng-click="changeValue1()">Change value1</button>
+
+	<div ng-controller="derivedCtrl">
+	<p>{{value.data}}</p>
+	<button ng-click="changeValue1()">Change value1</button>
+	<button ng-click="changeValue2()">Change value2</button>
+</div>
+</div>
+</body>
+</html>
